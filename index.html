@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ethereum frontend</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+
+</head>
+<body>
+    <div class="container">
+
+		<h3>Show a file-select field which allows only one file to be chosen:</h3>
+		  <label for="myfile">Select a file:</label>
+		  <input type="file" id="myfile" name="myfile"><br><br>
+		  <button id="submit">submit</button>
+
+    k
+    </div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://bundle.run/buffer@5.2.1"></script>
+	<script type="module" src="./app.js"></script>
+
+    <script>
+    //    if (typeof web3 !== 'undefined') {
+    //        web3 = new Web3(web3.currentProvider);
+    //    } else {
+    //        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    //    }
+
+	
+    //    web3.eth.defaultAccount = web3.eth.accounts[0];	
+
+
+	//    console.log(web3.eth.accounts[0]);
+	//    console.log(web3.eth.Balance);
+
+
+//        var InstructorContract = web3.eth.contract([
+// 	{
+// 		"anonymous": false,
+// 		"inputs": [
+// 			{
+// 				"indexed": false,
+// 				"internalType": "string",
+// 				"name": "fname",
+// 				"type": "string"
+// 			},
+// 			{
+// 				"indexed": false,
+// 				"internalType": "uint256",
+// 				"name": "age",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "Event",
+// 		"type": "event"
+// 	},
+// 	{
+// 		"constant": false,
+// 		"inputs": [
+// 			{
+// 				"internalType": "string",
+// 				"name": "_fName",
+// 				"type": "string"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_age",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "setInstructor",
+// 		"outputs": [],
+// 		"payable": false,
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"constant": true,
+// 		"inputs": [],
+// 		"name": "getInstructor",
+// 		"outputs": [
+// 			{
+// 				"internalType": "string",
+// 				"name": "",
+// 				"type": "string"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"payable": false,
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	}
+// ]);
+
+//        var Instructor = InstructorContract.at('0xAB5988E327d730D6AE4D580CCE89751a32684492');
+
+
+        $("#submit").click(function() {
+          
+          const input = document.getElementById('myfile');
+const reader = new FileReader();
+
+input.onchange = function() {
+  const file = input.files[0];
+  reader.readAsArrayBuffer(file);
+  reader.onloadend = () => this.convertToBuffer(reader)
+};
+
+convertToBuffer = async(reader) => {
+      //file is converted to a buffer to prepare for uploading to IPFS
+        const buffer = await Buffer.from(reader.result);
+}
+console.log(buffer);
+
+  ipfs.add(buffer, (err, ipfsHash) => {
+        console.log(err,ipfsHash);
+});
+            });
+
+	
+
+
+
+    </script>
+
+</body>
+</html>
